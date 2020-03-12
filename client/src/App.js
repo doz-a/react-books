@@ -7,7 +7,7 @@ import Home from "./components/pages/Home";
 import Wrapper from "./components/Wrapper";
 import Navbar from "./components/Navbar/Navbar";
 // import Product from "./pages/Product";
-import Product from "./components/pages/Product"
+import Books from "./components/pages/Books"
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
           <Wrapper>
             <Navbar />
             <Route exact path="/" component={Home} />
-            <Route exact path="/product" component={Product} />
+            <Route exact path="/books" component={Books} />
           </Wrapper>
         </div>
       </Router>
