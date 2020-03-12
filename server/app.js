@@ -27,8 +27,6 @@ app.get('*', (req, res) => {
 
 // Connect to the Mongo DB
 
-
-// mongoose.connect("", { useNewUrlParser: true });
 var DB_URL = process.env.MONGODB_URI;
 mongoose.connect(DB_URL, { useNewUrlParser: true });
 

@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Col, Jumbotron } from 'react-bootstrap';
-import ProductDisplay from "../ProductDisplay/ProductDisplay";
+import { Row, Col } from 'react-bootstrap';
 import JumbotronTitle from '../Jumbotron/Jumbotron';
+import { Link } from "react-router-dom";
+import { Input, TextArea, FormBtn } from "../Form";
+import { List, ListItem } from "../List";
+import DeleteBtn from "../DeleteBtn/index"
 import API from "../../utils/API";
+
 
 // --
 
@@ -23,9 +27,12 @@ class Home extends Component {
         API.getBooks()
             .then(res =>
                 this.setState({
-                    books: res.data, title: "",
+                    books:
+                        res.data,
+                    title: "",
                     author: "",
-                    description: ""
+                    description: "",
+                    image: ""
                 })
             )
             .catch(err => console.log(err));
@@ -50,7 +57,8 @@ class Home extends Component {
             API.saveBook({
                 title: this.state.title,
                 author: this.state.author,
-                description: this.state.description
+                description: this.state.description,
+                image: this.state.image
             })
                 .then(res => this.loadBooks())
                 .catch(err => console.log(err));
@@ -66,35 +74,86 @@ class Home extends Component {
                 <div className="productDisplay">
 
                     <Row>
-                        <Col size="md-6">
+                        <Col size="2" />
+                        <Col size="md-8">
                             <h1>
                                 Add a Book :)
                             </h1>
 
                             <form>
-                                {/* <Input
+                                <Input
                                     value={this.state.title}
                                     onChange={this.handleInputChange}
                                     name="title"
                                     placeholder="Title (required)"
-                                /> */}
+                                />
+                                <Input
+                                    value={this.state.author}
+                                    onChange={this.handleInputChange}
+                                    name="author"
+                                    placeholder="Author (required)"
+                                />
+                                <Input
+                                    value={this.state.image}
+                                    onChange={this.handleInputChange}
+                                    name="image"
+                                    placeholder="Image URL (Optional)"
+                                />
+                                <TextArea
+                                    value={this.state.description}
+                                    onChange={this.handleInputChange}
+                                    name="description"
+                                    placeholder="Description of the book (Optional)"
+                                />
+                                <FormBtn
+                                    disabled={!(this.state.author && this.state.title)}
+                                    onClick={this.handleFormSubmit}
+                                >
+                                    Add Book
+                                </FormBtn>
                             </form>
-                            <ProductDisplay />
                         </Col>
+                        <Col size="2" />
+                    </Row>
 
-                        <Col size="md-6">
+                    <Row>
+                        <Col size="md-8">
+                            <hr />
                             <h1>
                                 All Books :)
                             </h1>
-                            <ProductDisplay />
+                            <List>
+                                {this.state.books.map(book => (
+                                    <ListItem key={book._id}>
+
+                                        <p>
+                                            <Link to={"/books/" + book._id}>
+                                                <strong>
+                                                    {book.title}
+                                                </strong>
+                                            </Link>
+                                        </p>
+                                        <p>by {book.author}</p>
+                                        <img alt="" src={book.image}></img>
+                                        <br /><br />
+
+                                        <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+
+
+                                        <p>
+                                            {book.description}
+                                        </p>
+
+                                        <br></br>
+
+                                    </ListItem>
+                                ))}
+                            </List>
+
                         </Col>
                     </Row>
-                    <div className="productDisplayMultiple">
-
-
-                    </div>
                 </div>
-            </div>
+            </div >
         )
     }
 }

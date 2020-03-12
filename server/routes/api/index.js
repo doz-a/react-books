@@ -1,17 +1,7 @@
-const express = require('express'),
-    { api: controller } = require('../../controllers');
+const router = require("express").Router();
+const bookRoutes = require("./books");
 
-
-const router = express.Router();
-
-router.route('/')
-    .get(controller.getMain)
-    .get(controller.find);
-
-router.route('/:id')
-    .delete(controller.deleteOne);
-
-router.route('/books')
-    .post(controller.addBook);
+// Book routes
+router.use("/books", bookRoutes);
 
 module.exports = router;
