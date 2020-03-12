@@ -1,23 +1,56 @@
-# Node-React-Startup-Structure
-A file structure for developing a Node and React app.
 
-The [Client Folder](/client) contains a basic create-react-app starter file.
+# Google Books React
+My first full stack React application :)
 
-The [Server Folder](server) contains a basic MVC folder structure for creating an api using Node and Express.
+site: https://radiant-refuge-63725.herokuapp.com/
 
-## Commands that can be run from this root folder:
 
-`npm install` - Installs all packages specified in the package.json file for both the client and server.
+3/11/2020
+Version 1
 
-`npm run start` - checks if the environment variable 'NODE_ENV' is set to production, and runs either the development version or the production version of the project accordingly.
+# Basic Use
 
-`npm run start:dev` - Runs the development version of the project.
+You can search Google Books API for books. Clicking "save book" will save a book (not working completely yet, adds a test filler information). Books can also be viewed on Google Books by clicking "view". You can add books by navigating to the "Saved" page and filling in the form, then clicking "Submit". Books can be deleted from the database by clicking "delete book from database".
 
-`npm run start:prod` - Runs the production version of the project.
+# App Organization
+Application was created using my instructor's Node React Startup Structure
+https://github.com/anthonyrivas/Node-React-Startup-Structure
 
-`npm run build` - Runs build in the client folder.
+### client
+1. Components contains the buttons and forms, and jumbotron used to build the pages
+2. utils contains the API that handles querying Google Books, as well as deleting and saving books to the database
+3. App.js contains routes form the home search page, and the saved books page
 
-`npm run client` - Runs the client side code.
 
-`npm run server` - Runs the server side code.
+### server
+1. contains models -> controllers -> routes -> app.js
+2. contains dotenv required for accessing mongoLAB without exposing sensitive information
 
+## Technologies used
+1. Javascript
+2. NodeJS packages
+3. GitHub
+4. React
+5. React Bootstrap
+6. dotenv
+7. Morgan 
+8. MongoLAB DB
+9. Google Books API
+10. Express
+
+## Developers
+1. Miguel Delos Santos
+
+## Future Development
+1. Add login for users to save their books
+2. Complete saving a book
+3. Add more styling
+
+## Motivation
+1. A desire to learn how to turn React into a full stack application!
+
+Thanks for reading!
+
+(//)<(0.0)>(//)
+
+3/11/2020
