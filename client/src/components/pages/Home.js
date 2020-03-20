@@ -48,13 +48,14 @@ class Home extends Component {
             .catch(err => this.setState({ error: err.items }))
     }
 
-    handleSavedButton = event => {
+    handleSavedButton = (event, book) => {
         event.preventDefault();
+        console.log(book);
         API.saveBook({
-            title: "test title",
-            author: "test author",
-            description: "test description",
-            image: "test image"
+            title: book.title,
+            author: book.author[0],
+            description: book.description,
+            image: book.image
         })
             .then(res => this.loadBooks())
             .catch(err => console.log(err));
